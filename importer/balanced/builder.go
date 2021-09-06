@@ -254,7 +254,6 @@ func fillNodeRec(db *h.DagBuilderHelper, node *h.FSNodeOverDag, depth int) (fill
 	}
 
 	nodeFileSize = node.FileSize()
-
 	// Get the final `dag.ProtoNode` with the `FSNode` data encoded inside.
 	filledNode, err = node.Commit()
 	if err != nil {
