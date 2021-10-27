@@ -338,6 +338,12 @@ func (n *FSNodeOverDag) AddChild(child ipld.Node, fileSize uint64, db *DagBuilde
 	return db.Add(child)
 }
 
+func (n *FSNodeOverDag) SetBlockInfo(blockInfo uint64) error {
+	n.file.SetBlockInfo(blockInfo)
+	n.dag.SetBlockInfo(blockInfo)
+	return nil
+}
+
 // RemoveChild deletes the child node at the given index.
 func (n *FSNodeOverDag) RemoveChild(index int, dbh *DagBuilderHelper) {
 	n.file.RemoveBlockSize(index)

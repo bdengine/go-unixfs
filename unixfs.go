@@ -212,6 +212,13 @@ func NewFSNode(dataType pb.Data_DataType) *FSNode {
 	return n
 }
 
+func (n *FSNode) SetBlockInfo(blockInfo uint64) {
+	n.format.BlockInfo = &blockInfo
+}
+func (n *FSNode) GetBlockInfo() *uint64 {
+	return n.format.BlockInfo
+}
+
 // HashType gets hash type of format
 func (n *FSNode) HashType() uint64 {
 	return n.format.GetHashType()
