@@ -169,7 +169,6 @@ func Layout(db *h.DagBuilderHelper) (ipld.Node, error) {
 		}
 	}
 	// TODO 对生成的节点设置是否鉴权
-
 	return root, db.Add(root)
 }
 

@@ -299,9 +299,9 @@ func (dr *dagReader) WriteTo(w io.Writer) (n int64, err error) {
 
 		// Skip internal nodes, they shouldn't have any file data
 		// (see the `balanced` package for more details).
-		if len(node.Links()) > 0 {
+		/*if len(node.Links()) > 0 {
 			return nil
-		}
+		}*/
 
 		err = dr.saveNodeData(node)
 		if err != nil {

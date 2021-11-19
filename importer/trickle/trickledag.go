@@ -38,6 +38,8 @@ const depthRepeat = 4
 // explanation.
 func Layout(db *h.DagBuilderHelper) (ipld.Node, error) {
 	newRoot := db.NewFSNodeOverDag(ft.TFile)
+	// 暂定文件头存储的data大小为10
+	db.FillRootNodeData(newRoot)
 	root, _, err := fillTrickleRec(db, newRoot, -1)
 	if err != nil {
 		return nil, err
@@ -50,6 +52,7 @@ func Layout(db *h.DagBuilderHelper) (ipld.Node, error) {
 // in the case maxDepth is greater than zero, or with unlimited depth otherwise
 // (where the DAG builder will signal the end of data to end the function).
 func fillTrickleRec(db *h.DagBuilderHelper, node *h.FSNodeOverDag, maxDepth int) (filledNode ipld.Node, nodeFileSize uint64, err error) {
+
 	// Always do this, even in the base case
 	if err := db.FillNodeLayer(node); err != nil {
 		return nil, 0, err
@@ -76,7 +79,14 @@ func fillTrickleRec(db *h.DagBuilderHelper, node *h.FSNodeOverDag, maxDepth int)
 			}
 		}
 	}
-
+	if maxDepth == -1 {
+		// 获取blockInfo
+		blockInfo := db.GetBlockInfo()
+		// 将头文件片设置进行改动
+		blockInfo, _ = cid.TurnInfoMask(blockInfo, cid.Auth, cid.Auth_Y)
+		blockInfo, _ = cid.TurnInfoMask(blockInfo, cid.BlockType, cid.BlockType_root)
+		node.SetBlockInfo(blockInfo)
+	}
 	// Get the final `dag.ProtoNode` with the `FSNode` data encoded inside.
 	filledNode, err = node.Commit()
 	if err != nil {

@@ -46,6 +46,10 @@ type DagBuilderHelper struct {
 	offset uint64
 }
 
+func (d DagBuilderHelper) GetBlockInfo() uint64 {
+	return d.cidBuilder.GetBlockInfo()
+}
+
 // DagBuilderParams wraps configuration options to create a DagBuilderHelper
 // from a chunker.Splitter.
 type DagBuilderParams struct {
@@ -177,7 +181,6 @@ func (db *DagBuilderHelper) NewLeafNode(data []byte, fsNodeType pb.Data_DataType
 // NOTE: This function creates raw data nodes so it only works
 // for the `trickle.Layout`.
 func (db *DagBuilderHelper) FillNodeLayer(node *FSNodeOverDag) error {
-
 	// while we have room AND we're not done
 	for node.NumChildren() < db.maxlinks && !db.Done() {
 		child, childFileSize, err := db.NewLeafDataNode(ft.TRaw)
@@ -193,6 +196,19 @@ func (db *DagBuilderHelper) FillNodeLayer(node *FSNodeOverDag) error {
 	// TODO: Do we need to commit here? The caller who created the
 	// `FSNodeOverDag` should be in charge of that.
 
+	return nil
+}
+func (db *DagBuilderHelper) FillRootNodeData(node *FSNodeOverDag) error {
+	size, err := db.spl.ChangeSize(1024 * 10)
+	data, err := db.Next()
+	if err != nil {
+		return err
+	}
+	node.file.SetData(data)
+	_, err = db.spl.ChangeSize(size)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
