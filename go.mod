@@ -18,8 +18,12 @@ require (
 	github.com/smartystreets/goconvey v0.0.0-20190330032615-68dc04aab96a // indirect
 	github.com/spaolacci/murmur3 v1.1.0
 	github.com/warpfork/go-wish v0.0.0-20190328234359-8b3e70f8e830 // indirect
+	github.com/ipfs/go-cid v0.0.7
 )
 
-replace github.com/ipfs/go-merkledag => ../ipld/go-ipld-merkledag
+replace (
+ github.com/ipfs/go-merkledag => ../go-ipld-merkledag
+ github.com/ipfs/go-cid v0.0.3 => ../go-cid
+)
 
 go 1.12

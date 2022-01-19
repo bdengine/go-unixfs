@@ -252,9 +252,14 @@ func fillNodeRec(db *h.DagBuilderHelper, node *h.FSNodeOverDag, depth int) (fill
 		}
 	}
 
-	nodeFileSize = node.FileSize()
+	// todo 暂时不设置文件头的权限信息，cid版本足以判断
+	/*nodeFileSize = node.FileSize()
+	prefix := db.GetCidBuilder().(cid.Prefix)
 	// 设置根块需要鉴权
-	node.SetBlockInfo(1)
+	if prefix.Version == 2 {
+		info := cid.GetBlockInfo(cid.Tar_N, cid.BlockType_root, cid.Crypt_N, cid.Auth_Y)
+		node.SetBlockInfo(info)
+	}*/
 	// Get the final `dag.ProtoNode` with the `FSNode` data encoded inside.
 	filledNode, err = node.Commit()
 	if err != nil {
