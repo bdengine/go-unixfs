@@ -8,7 +8,7 @@ import (
 
 	ipld "github.com/ipfs/go-ipld-format"
 	mdag "github.com/ipfs/go-merkledag"
-	unixfs "github.com/ipfs/go-unixfs"
+	unixfs "github.com/bdengine/go-unixfs"
 )
 
 // Common errors

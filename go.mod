@@ -1,4 +1,4 @@
-module github.com/ipfs/go-unixfs
+module github.com/bdengine/go-unixfs
 
 require (
 	github.com/Stebalien/go-bitfield v0.0.1
@@ -22,8 +22,8 @@ require (
 )
 
 replace (
- github.com/ipfs/go-merkledag => ../go-ipld-merkledag
- github.com/ipfs/go-cid v0.0.3 => ../go-cid
+ github.com/ipfs/go-merkledag => github.com/bdengine/go-merkledag latest
+ github.com/ipfs/go-cid v0.0.3 => github.com/bdengine/go-cid latest
 )
 
 go 1.12

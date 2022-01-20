@@ -52,7 +52,7 @@ The `test` subpackage provides several utilities to make testing unixfs related 
 ## Install
 
 ```sh
-go get github.com/ipfs/go-unixfs
+go get github.com/bdengine/go-unixfs
 ```
 
 ## Contribute

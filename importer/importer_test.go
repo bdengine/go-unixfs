@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	uio "github.com/ipfs/go-unixfs/io"
+	uio "github.com/bdengine/go-unixfs/io"
 
 	cid "github.com/ipfs/go-cid"
 	chunker "github.com/ipfs/go-ipfs-chunker"
