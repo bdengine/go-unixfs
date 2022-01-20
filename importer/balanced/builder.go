@@ -52,8 +52,8 @@ package balanced
 import (
 	"errors"
 
-	ft "github.com/bdengine/go-unixfs"
-	h "github.com/bdengine/go-unixfs/importer/helpers"
+	ft "github.com/ipfs/go-unixfs"
+	h "github.com/ipfs/go-unixfs/importer/helpers"
 
 	ipld "github.com/ipfs/go-ipld-format"
 )

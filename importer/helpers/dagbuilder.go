@@ -8,8 +8,8 @@ import (
 
 	dag "github.com/ipfs/go-merkledag"
 
-	ft "github.com/bdengine/go-unixfs"
-	pb "github.com/bdengine/go-unixfs/pb"
+	ft "github.com/ipfs/go-unixfs"
+	pb "github.com/ipfs/go-unixfs/pb"
 
 	cid "github.com/ipfs/go-cid"
 	chunker "github.com/ipfs/go-ipfs-chunker"

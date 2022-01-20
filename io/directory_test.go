@@ -8,7 +8,7 @@ import (
 	ipld "github.com/ipfs/go-ipld-format"
 	mdtest "github.com/ipfs/go-merkledag/test"
 
-	ft "github.com/bdengine/go-unixfs"
+	ft "github.com/ipfs/go-unixfs"
 )
 
 func TestEmptyNode(t *testing.T) {
